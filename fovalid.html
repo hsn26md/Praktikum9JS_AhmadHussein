@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+</head>
+<body>
+    <form>
+        <label for="name">Nama: </label>
+        <input type="text" id="name" placeholder="Masukan Nama Anda" required>
+
+        <br>
+
+        <label for="email">Email: </label>
+        <input type="email" id="email" placeholder="Masukan Email Anda" required>
+
+        <br>
+
+        <label for="Jam">Jam Keberatangan: </label>
+        <input type="time" id="Jam" required>
+
+        <br>
+
+        <label for="tujuan">Tujuan: </label>
+        <input type="text" id="tujuan" placeholder="Masukan Tujuan Anda" required>
+
+        <br>
+
+        <label for="jumlahtkt">Jumlah Tiket: </label>
+        <input type="number" id="jumlahtkt" placeholder="Masukan Jumlah Tiket" required><span></span>
+
+        <br />
+        
+        <input type="button" value="Submit" onclick="FormValidation()">
+    </form>
+
+    <div>
+        <h1 id="hasil"></h1>
+        <p id="hasilname"></p>
+        <p id="hasilemail"></p>
+        <p id="hasiljam"></p>
+        <p id="hasiltujuan"></p>
+        <p id="hasiljumlahtkt"></p>
+    </div>
+
+    <script>
+        function FormValidation() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let Jam = document.getElementById("Jam").value;
+            let tujuan = document.getElementById("tujuan").value;
+            let jumlahtkt = document.getElementById("jumlahtkt").value;
+
+            let hasil = (document.getElementById("hasil").innerHTML = "Validasi Data");
+
+            if (nama.toLowerCase() == "Hanna" && email == "kyuu@gmail.com" && jam == "06:00" && tujuan.toLowerCase() == "Kalimantan" && tiket == "3") {
+                document.getElementById("hasilname").innerHTML = "Nama Pelanggan : " + nama;
+                document.getElementById("hasilemail").innerHTML = "Email : " + email;
+                document.getElementById("hasiljam").innerHTML = "Jam Keberangkatan : " + jam;
+                document.getElementById("hasiltujuan").innerHTML = "Tujuan : " + tujuan;
+                document.getElementById("hasiljumlahtkt").innerHTML = "Tiket : " + tiket;
+            }
+
+            if (nama.toLowerCase() != "Hanna" || email != "kyuu@gmail.com") {
+                document.getElementById("errorName").innerHTML = " DATA TIDAK DITEMUKAN";
+                document.getElementById("errorName").style = "color:red";
+                document.getElementById("errorEmail").innerHTML = " DATA TIDAK DITEMUKAN";
+                document.getElementById("errorEmail").style = "color:red";
+            }
+
+            if (jam != "06:00") {
+                document.getElementById("errorJam").innerHTML = " DATA TIDAK DITEMUKAN";
+                document.getElementById("errorJam").style = "color:red";
+            }
+
+            if (tujuan.toLowerCase() != "Kalimantan" || tiket != "3") {
+                document.getElementById("errorTujuan").innerHTML = " DATA TIDAK DITEMUKAN";
+                document.getElementById("errorTujuan").style = "color:red";
+                document.getElementById("errorTiket").innerHTML = " DATA TIDAK DITEMUKAN";
+                document.getElementById("errorTiket").style = "color:red";
+            }
+        }
+
+        function reload() {
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>

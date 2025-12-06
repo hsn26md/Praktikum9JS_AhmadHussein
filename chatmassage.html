@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Message</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d8e7fd;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        main.chat-container {
+            width: 400px;
+            height: 500px;
+            background-color: white;
+            border: 1px solid #bbbbbb;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        header.chat-header {
+            background-color: #4682b4; 
+            color: white;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 1px solid #315f85;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        section#kotak-pesan {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .pesan-item {
+            margin: 0;
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 75%;
+            word-wrap: break-word;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .pesan-kiri {
+            align-self: flex-start;
+            background-color: #f1f0f0;
+            color: #333;
+            border-bottom-left-radius: 5px;
+        }
+
+        .pesan-kanan {
+            align-self: flex-end;
+            background-color: #4682b4;
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        footer.input-area {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            display: flex;
+            gap: 5px;
+        }
+
+        #input-pesan {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        #input-pesan:focus {
+            border-color: #4682b4;
+        }
+
+        #btn-kirim {
+            padding: 10px 20px;
+            background-color: #4682b4;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        #btn-kirim:hover {
+            background-color: #315f85;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="chat-container">
+        <header class="chat-header">
+            <span>Chat Message</span>
+            <span style="font-size: 20px;">&#8942;</span>
+        </header>
+
+        <section id="kotak-pesan">
+            <p class="pesan-item pesan-kiri">Hello</p>
+
+        </section>
+
+        <footer class="input-area">
+            <input type="text" id="input-pesan" placeholder="Ketik pesan..." onkeypress="cekEnter(event)">
+            <button id="btn-kirim" onclick="kirimPesan()">Kirim</button>
+        </footer>
+    </main>
+
+    <script>
+        function kirimPesan() {
+            var input = document.getElementById("input-pesan");
+            var kotak = document.getElementById("kotak-pesan");
+            var teks = input.value;
+
+            if (teks.trim() === "") return;
+
+            var elemenBaru = document.createElement("p");
+
+            elemenBaru.className = "pesan-item pesan-kanan"; 
+            
+            elemenBaru.innerText = teks;
+
+            kotak.appendChild(elemenBaru);
+
+            kotak.scrollTop = kotak.scrollHeight;
+
+            input.value = "";
+            input.focus();
+
+            setTimeout(function() {
+                jawabOtomatis();
+            }, 1500);
+        }
+
+        function jawabOtomatis() {
+            var kotak = document.getElementById("kotak-pesan");
+            var balasan = document.createElement("p");
+
+            balasan.className = "pesan-item pesan-kiri"; 
+            balasan.innerText = "Oke, pesan diterima!";
+
+            kotak.appendChild(balasan);
+            kotak.scrollTop = kotak.scrollHeight;
+        }
+
+        function cekEnter(event) {
+            if (event.key === "Enter") {
+                kirimPesan();
+            }
+        }
+    </script>
+
+</body>
+</html>

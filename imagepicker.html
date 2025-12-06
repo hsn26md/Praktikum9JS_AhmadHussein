@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Picker</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: hsl(208, 40%, 91%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 400px;
+            border-top: 5px solid #4682b4; 
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid hsl(208, 40%, 70%);
+            width: 100%;
+            cursor: pointer;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        select:focus {
+            border-color: #4682b4;
+        }
+
+        #image-area {
+            min-height: 300px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 5px;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            aspect-ratio: 4 / 3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Image Picker</h2>
+
+        <select id="picker" onchange="tampilkanGambar()">
+            <option value="">-- Pilih Hewan --</option>
+            <option value="https://wildearth.com/cdn/shop/articles/maine-coon-cat_b9ba5e6c-983a-4a77-9def-9308a52f009f.jpg?v=1756412044">Kucing</option>
+            <option value="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400">Anjing</option>
+            <option value="https://portal.riau24.com/news/20211220/riau24_1639967276.jpg">Kucing Hutan</option>
+            <option value="https://ragunanzoo.jakarta.go.id/wp-content/uploads/2023/09/owa-ungko.jpg">Monyet</option>
+            <option value="https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=400">Singa</option>
+            <option value="https://asset.kompas.com/crops/KOAktUukJdJmUvE8eXe0be_3Yzw=/0x0:1000x667/750x500/data/photo/2024/04/15/661cec6bde0fe.jpg">Burung</option>
+        </select>
+
+        <div id="image-area">
+            <span id="placeholder-text" style="color: #999;">Gambar akan muncul di sini</span>
+            <img id="preview-img" src="" alt="Preview Gambar">
+        </div>
+    </div>
+
+    <script>
+        function tampilkanGambar() {
+            var select = document.getElementById("picker");
+            var img = document.getElementById("preview-img");
+            var placeholder = document.getElementById("placeholder-text");
+
+            var urlGambar = select.value;
+
+            var teksPilihan = select.options[select.selectedIndex].text;
+
+            if (urlGambar !== "") {
+                img.src = urlGambar;
+                img.style.display = "block";
+                placeholder.style.display = "none";
+
+                var namaFile = teksPilihan.match(/\((.*?)\)/)[1]; 
+                
+                alert("Ini gambar " + namaFile);
+            
+            } else {
+                img.style.display = "none";
+                placeholder.style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>
